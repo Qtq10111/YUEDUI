@@ -33,5 +33,5 @@ xiaoneisai\main.o: ../Core/Inc/i2c.h
 xiaoneisai\main.o: ../Core/Inc/tim.h
 xiaoneisai\main.o: ../Core/Inc/usart.h
 xiaoneisai\main.o: ../Core/Inc/gpio.h
-xiaoneisai\main.o: E:\drive\move.h
-xiaoneisai\main.o: E:\drive\mpu6050.h
+xiaoneisai\main.o: .\drive\move.h
+xiaoneisai\main.o: .\drive\mpu6050.h
