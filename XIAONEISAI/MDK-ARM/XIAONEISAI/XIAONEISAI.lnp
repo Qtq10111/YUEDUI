@@ -1,5 +1,7 @@
 --cpu Cortex-M3
 "xiaoneisai\startup_stm32f103xe.o"
+"xiaoneisai\move.o"
+"xiaoneisai\mpu6050.o"
 "xiaoneisai\main.o"
 "xiaoneisai\gpio.o"
 "xiaoneisai\i2c.o"
@@ -7,8 +9,7 @@
 "xiaoneisai\usart.o"
 "xiaoneisai\stm32f1xx_it.o"
 "xiaoneisai\stm32f1xx_hal_msp.o"
-"xiaoneisai\mpu6050.o"
-"xiaoneisai\move.o"
+"xiaoneisai\catch.o"
 "xiaoneisai\stm32f1xx_hal_gpio_ex.o"
 "xiaoneisai\stm32f1xx_hal_i2c.o"
 "xiaoneisai\stm32f1xx_hal.o"
@@ -25,7 +26,7 @@
 "xiaoneisai\stm32f1xx_hal_tim_ex.o"
 "xiaoneisai\stm32f1xx_hal_uart.o"
 "xiaoneisai\system_stm32f1xx.o"
---strict --scatter "XIAONEISAI\XIAONEISAI.sct"
+--library_type=microlib --strict --scatter "XIAONEISAI\XIAONEISAI.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "XIAONEISAI.map" -o XIAONEISAI\XIAONEISAI.axf

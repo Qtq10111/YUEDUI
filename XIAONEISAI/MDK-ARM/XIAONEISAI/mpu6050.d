@@ -1,5 +1,5 @@
-xiaoneisai\mpu6050.o: E:\drive\mpu6050.c
-xiaoneisai\mpu6050.o: E:\drive\mpu6050.h
+xiaoneisai\mpu6050.o: drive\mpu6050.c
+xiaoneisai\mpu6050.o: drive\mpu6050.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 xiaoneisai\mpu6050.o: ../Core/Inc/stm32f1xx_hal_conf.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
@@ -7,14 +7,14 @@ xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Include/core_cm3.h
-xiaoneisai\mpu6050.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+xiaoneisai\mpu6050.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Include/cmsis_version.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 xiaoneisai\mpu6050.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-xiaoneisai\mpu6050.o: E:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+xiaoneisai\mpu6050.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 xiaoneisai\mpu6050.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
