@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "move.h"
 #include "mpu6050.h"
+#include "Catch.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,6 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define CATCH_MOVE 500
 
 /* USER CODE END PD */
 
@@ -62,9 +64,10 @@ void Brake(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t recieveDeta[1];
+uint8_t recieveData[7];
+uint8_t Catchsg90 ;
 uint32_t timeout = 0;
-char current_move = 'O';
+uint8_t current_move ;
 float initial_yaw = 0.0f;
 int base_speed = 50;
 MPU6050_CalibData mpu_calib;
@@ -104,6 +107,8 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
+  MX_TIM1_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 	MPU6050_CalibData mpu_calib;
 	if(MPU6050_Init(&hi2c1, &mpu_calib) != HAL_OK)
@@ -113,12 +118,16 @@ int main(void)
 	HAL_Delay(1000);
 	MPU6050_Calibrate(&hi2c1, &mpu_calib);
 	HAL_TIM_Base_Start_IT(&htim2);
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);//时钟二pwm初始化（底盘）
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-	Brake();
-	HAL_UART_Receive_IT(&huart1, recieveDeta, 1);
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);//时钟一pwm初始化（舵机）
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);//时钟四pwm初始化（丝杆）
+	Brake();//设置初始状态为刹停
+	__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,CATCH_MOVE);
+	__HAL_TIM_SET_AUTORELOAD(&htim4,2000-1);
+	HAL_UART_Receive_IT(&huart1, recieveData, sizeof(recieveData));
 	timeout = HAL_GetTick();
   /* USER CODE END 2 */
 
@@ -179,43 +188,47 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	switch(recieveDeta[0])
+	Catch_hand(recieveData[1]); //抓取
+	
+	Catch_move(recieveData[2],recieveData[3]); //爪移动
+	
+	switch(recieveData[4]) //整车移动
 		{
-			case 'W':
-				current_move = 'W';
+			case 87:
+				current_move = 87;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
-			case 'S':
-				current_move = 'S';
+			case 83:
+				current_move = 83;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
-			case 'A':
-				current_move = 'A';
+			case 65:
+				current_move = 65;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
-			case 'D':
-				current_move = 'D';
+			case 68:
+				current_move = 68;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
-			case 'Q':
-				current_move = 'Q';
+			case 81:
+				current_move = 81;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
-			case 'E':
-				current_move = 'E';
+			case 69:
+				current_move = 69;
 				initial_yaw = current_yaw;
 				timeout = HAL_GetTick();
 				break;
 			default:
-				current_move = 'O';
+				current_move = 0;
 				Brake();
 		}
-		HAL_UART_Receive_IT(&huart1, recieveDeta, 1);
+		HAL_UART_Receive_IT(&huart1, recieveData, sizeof(recieveData));
 }
 
 float Yaw_PID(float target_yaw, float current_yaw) 
@@ -248,7 +261,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     current_yaw = yaw;
 
 
-    if (current_move != '0') 
+    if (current_move != 0) 
 		{
       float target_yaw = initial_yaw;
       float pid_comp = Yaw_PID(target_yaw, current_yaw);
@@ -258,27 +271,27 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 
       switch(current_move) 
 			{
-        case 'W':
+        case 87:
           LFMotor(left_speed); RFMotor(right_speed);
           LBMotor(left_speed); RBMotor(right_speed);
           break;
-        case 'S':
+        case 83:
           LFMotor(-left_speed); RFMotor(-right_speed);
           LBMotor(-left_speed); RBMotor(-right_speed);
           break;
-        case 'A':
+        case 65:
           LFMotor(-left_speed); RFMotor(right_speed);
           LBMotor(left_speed); RBMotor(-right_speed);
           break;
-        case 'D':
+        case 68:
           LFMotor(left_speed); RFMotor(-right_speed);
           LBMotor(-left_speed); RBMotor(right_speed);
           break;
-        case 'Q':
+        case 81:
           LFMotor(-left_speed); RFMotor(left_speed);
           LBMotor(-left_speed); RBMotor(left_speed);
           break;
-        case 'E':
+        case 69:
           LFMotor(left_speed); RFMotor(-left_speed);
           LBMotor(left_speed); RBMotor(-left_speed);
           break;
