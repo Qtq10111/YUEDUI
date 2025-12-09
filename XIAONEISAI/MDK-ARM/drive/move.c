@@ -5,7 +5,7 @@
 #include "stm32f1xx_hal_uart.h"
 #include "main.h"
 
-void LFMotor(int8_t speed)     //×óÇ°µç»ú
+void LFMotor(int8_t speed)     //å·¦å‰è½®
 {
 	if(speed > 0)
 	{
@@ -26,7 +26,7 @@ void LFMotor(int8_t speed)     //×óÇ°µç»ú
 		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, -speed);
 	}
 }
-void RFMotor(int8_t speed)    //ÓÒÇ°µç»ú
+void RFMotor(int8_t speed)    //å³å‰è½®
 {
 	if(speed > 0)
 	{
@@ -47,7 +47,7 @@ void RFMotor(int8_t speed)    //ÓÒÇ°µç»ú
 		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, -speed);
 	}
 }
-void LBMotor(int8_t speed)          //×óºóµç»ú
+void LBMotor(int8_t speed)          //å·¦åŽè½®
 {
 	if(speed > 0)
 	{
@@ -68,7 +68,7 @@ void LBMotor(int8_t speed)          //×óºóµç»ú
 		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, -speed);
 	}
 }
-void RBMotor(int8_t speed)          //ÓÒºóµç»ú
+void RBMotor(int8_t speed)          //å³åŽè½®
 {
 	if(speed > 0)
 	{

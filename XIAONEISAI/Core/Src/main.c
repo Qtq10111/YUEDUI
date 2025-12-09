@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -26,8 +25,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "move.h"
-#include "mpu6050.h"
-#include "Catch.h"
+#include "pid.h"
+#include "step_motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,8 +69,10 @@ uint32_t timeout = 0;
 uint8_t current_move ;
 float initial_yaw = 0.0f;
 int base_speed = 50;
-MPU6050_CalibData mpu_calib;
 float current_yaw = 0.0f;
+float target_speed_forward = 0;  // 前进/后退速度
+float target_speed_left = 0;     // 左移/右移速度
+float target_speed_rotate = 0;   // 旋转速度
 /* USER CODE END 0 */
 
 /**
@@ -103,20 +104,16 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_I2C1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   MX_TIM1_Init();
   MX_TIM4_Init();
+  MX_TIM5_Init();
+  MX_TIM8_Init();
+  MX_TIM6_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	MPU6050_CalibData mpu_calib;
-	if(MPU6050_Init(&hi2c1, &mpu_calib) != HAL_OK)
-	{
-		while(1);
-	}
-	HAL_Delay(1000);
-	MPU6050_Calibrate(&hi2c1, &mpu_calib);
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);//时钟二pwm初始化（底盘）
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
@@ -135,10 +132,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if(HAL_GetTick() - timeout > 100)
-		{
-			Brake();
-		}
+		if (HAL_GetTick() - timeout > 100)
+    {
+        Brake();
+        // 超时后把PID目标速度设为0，电机停止
+        target_speed_forward = 0;
+        target_speed_left = 0;
+        target_speed_rotate = 0;
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -188,116 +189,133 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	Catch_hand(recieveData[1]); //抓取
-	
-	Catch_move(recieveData[2],recieveData[3]); //爪移动
-	
-	switch(recieveData[4]) //整车移动
-		{
-			case 87:
-				current_move = 87;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			case 83:
-				current_move = 83;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			case 65:
-				current_move = 65;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			case 68:
-				current_move = 68;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			case 81:
-				current_move = 81;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			case 69:
-				current_move = 69;
-				initial_yaw = current_yaw;
-				timeout = HAL_GetTick();
-				break;
-			default:
-				current_move = 0;
-				Brake();
-		}
-		HAL_UART_Receive_IT(&huart1, recieveData, sizeof(recieveData));
-}
+    if (huart == &huart1)
+    {
+			  if(huart->gState == HAL_UART_STATE_READY)
+				{
+		         HAL_UART_Transmit_IT(&huart2,recieveData,sizeof(recieveData));
+	      }
+        switch(recieveData[4])
+        {
+            // 前进（W，ASCII 87）
+            case 87:
+                current_move = 87;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                // 设置PID目标速度：前进50脉冲/ms
+                target_speed_forward = 50.0f;
+                target_speed_left = 0;
+                target_speed_rotate = 0;
+                break;
 
-float Yaw_PID(float target_yaw, float current_yaw) 
-{
-  static float last_error = 0, integral = 0;
-  float error = target_yaw - current_yaw;
-  
-  if (error > 180) error -= 360;
-  if (error < -180) error += 360;
-  
-  float P = 2.5f * error;
-  integral += error * 0.01f;
-  integral = (integral > 50) ? 50 : integral;
-  integral = (integral < -50) ? -50 : integral;
-  float I = 0.05f * integral;
-  float D = 0.6f * (error - last_error) / 0.01f;
-  last_error = error;
-  
-  return P + I + D;
-}
+            // 后退（S，ASCII 83）
+            case 83:
+                current_move = 83;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                // 设置PID目标速度：后退-50脉冲/ms
+                target_speed_forward = -50.0f;
+                target_speed_left = 0;
+                target_speed_rotate = 0;
+                break;
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-  if (htim->Instance == TIM3) 
-	{
-    MPU6050_SensorData mpu_data;
-    MPU6050_ReadSensorData(&hi2c1, &mpu_calib, &mpu_data);
-    
-    static float yaw = 0;
-    yaw += mpu_data.gyro_z * 0.01f;
-    current_yaw = yaw;
+            // 左移（A，ASCII 65）
+            case 65:
+                current_move = 65;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                // 设置PID目标速度：左移50脉冲/ms
+                target_speed_forward = 0;
+                target_speed_left = 50.0f;
+                target_speed_rotate = 0;
+                break;
 
+            // 右移（D，ASCII 68）
+            case 68:
+                current_move = 68;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                // 设置PID目标速度：右移-50脉冲/ms
+                target_speed_forward = 0;
+                target_speed_left = -50.0f;
+                target_speed_rotate = 0;
+                break;
 
-    if (current_move != 0) 
-		{
-      float target_yaw = initial_yaw;
-      float pid_comp = Yaw_PID(target_yaw, current_yaw);
-      int left_speed = base_speed + pid_comp;
-      int right_speed = base_speed - pid_comp;
+            // （可以加旋转指令，比如Q/E）
+            case 81: // 左旋转（Q）
+                current_move = 81;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                target_speed_forward = 0;
+                target_speed_left = 0;
+                target_speed_rotate = 30.0f;
+                break;
 
+            case 69: // 右旋转（E）
+                current_move = 69;
+                initial_yaw = current_yaw;
+                timeout = HAL_GetTick();
+                target_speed_forward = 0;
+                target_speed_left = 0;
+                target_speed_rotate = -30.0f;
+                break;
+						case 'Z'://第一组步进抬升
+							  Motor_HandleCtrlData(CTRL_DATA_GROUP1);
+						case 'X'://第二组步进抬升
+							  Motor_HandleCtrlData(CTRL_DATA_GROUP2);
+						case 'C'://第三组步进抬升
+							  Motor_HandleCtrlData(CTRL_DATA_ALL);
+        }
 
-      switch(current_move) 
-			{
-        case 87:
-          LFMotor(left_speed); RFMotor(right_speed);
-          LBMotor(left_speed); RBMotor(right_speed);
-          break;
-        case 83:
-          LFMotor(-left_speed); RFMotor(-right_speed);
-          LBMotor(-left_speed); RBMotor(-right_speed);
-          break;
-        case 65:
-          LFMotor(-left_speed); RFMotor(right_speed);
-          LBMotor(left_speed); RBMotor(-right_speed);
-          break;
-        case 68:
-          LFMotor(left_speed); RFMotor(-right_speed);
-          LBMotor(-left_speed); RBMotor(right_speed);
-          break;
-        case 81:
-          LFMotor(-left_speed); RFMotor(left_speed);
-          LBMotor(-left_speed); RBMotor(left_speed);
-          break;
-        case 69:
-          LFMotor(left_speed); RFMotor(-left_speed);
-          LBMotor(left_speed); RBMotor(-left_speed);
-          break;
-      }
+        // 重新开启UART接收中断
+        HAL_UART_Receive_IT(&huart1, recieveData, sizeof(recieveData));
     }
-  }
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim == &htim6)
+    {
+        // 1. 计算编码器速度
+        Encoder_CalcSpeed(&htim1, 10);  // 左前
+        Encoder_CalcSpeed(&htim3, 10);  // 右前
+        Encoder_CalcSpeed(&htim4, 10);  // 左后
+        Encoder_CalcSpeed(&htim5, 10);  // 右后
+
+        // 2. 速度分解：把“前进/左移/旋转”分解到4个电机
+        // 左前电机：前进 - 左移 - 旋转
+        float target_LF = target_speed_forward - target_speed_left - target_speed_rotate;
+        // 右前电机：前进 + 左移 + 旋转
+        float target_RF = target_speed_forward + target_speed_left + target_speed_rotate;
+        // 左后电机：前进 + 左移 - 旋转
+        float target_LB = target_speed_forward + target_speed_left - target_speed_rotate;
+        // 右后电机：前进 - 左移 + 旋转
+        float target_RB = target_speed_forward - target_speed_left + target_speed_rotate;
+
+        // 3. 设置PID目标
+        PID_SetTarget(1, target_LF);
+        PID_SetTarget(2, target_RF);
+        PID_SetTarget(3, target_LB);
+        PID_SetTarget(4, target_RB);
+
+        // 4. 读取当前速度
+        float speed_LF = Encoder_GetSpeed(&htim1);
+        float speed_RF = Encoder_GetSpeed(&htim3);
+        float speed_LB = Encoder_GetSpeed(&htim4);
+        float speed_RB = Encoder_GetSpeed(&htim5);
+
+        // 5. PID计算
+        float out_LF = PID_Calc(&pid_LF, speed_LF);
+        float out_RF = PID_Calc(&pid_RF, speed_RF);
+        float out_LB = PID_Calc(&pid_LB, speed_LB);
+        float out_RB = PID_Calc(&pid_RB, speed_RB);
+
+        // 6. 控制电机
+        LFMotor((int8_t)out_LF);
+        RFMotor((int8_t)out_RF);
+        LBMotor((int8_t)out_LB);
+        RBMotor((int8_t)out_RB);
+    }
 }
 /* USER CODE END 4 */
 
