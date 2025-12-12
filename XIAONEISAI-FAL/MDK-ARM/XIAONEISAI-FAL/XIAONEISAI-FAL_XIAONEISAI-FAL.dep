@@ -33,8 +33,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x68EB5C8F)
 I (../Core/Inc/tim.h)(0x693A8636)
 I (../Core/Inc/gpio.h)(0x693A8635)
 F (.\move.h)(0x693B135D)()
-F (.\time.c)(0x693B1D86)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\time.o --omf_browse xiaoneisai-fal\time.crf --depend xiaoneisai-fal\time.d)
-I (time.h)(0x693B1EBF)
+F (.\time.c)(0x693C0FC2)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\time.o --omf_browse xiaoneisai-fal\time.crf --depend xiaoneisai-fal\time.d)
+I (time.h)(0x693C05D9)
 I (../Core/Inc/main.h)(0x693A8636)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x68EB5C8F)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x693B0D91)
@@ -63,7 +63,9 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x68EB5C8F)
 I (../Core/Inc/tim.h)(0x693A8636)
-F (.\time.h)(0x693B1EBF)()
+I (pid.h)(0x693C0DB8)
+I (motor.h)(0x693C073F)
+F (.\time.h)(0x693C05D9)()
 F (../Core/Src/main.c)(0x693B0D92)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\main.o --omf_browse xiaoneisai-fal\main.crf --depend xiaoneisai-fal\main.d)
 I (../Core/Inc/main.h)(0x693A8636)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x68EB5C8F)
@@ -125,6 +127,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x68EB5C8F)
+F (C:\Users\ÇüÌìÆë\Desktop\app_motor.h)(0x693C05D9)()
 F (../Core/Src/tim.c)(0x693B0D91)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\tim.o --omf_browse xiaoneisai-fal\tim.crf --depend xiaoneisai-fal\tim.d)
 I (../Core/Inc/tim.h)(0x693A8636)
 I (../Core/Inc/main.h)(0x693A8636)
@@ -211,8 +214,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x68EB5C8F)
-F (.\pid.c)(0x693B1BBD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\pid.o --omf_browse xiaoneisai-fal\pid.crf --depend xiaoneisai-fal\pid.d)
-I (pid.h)(0x693B1BBD)
+F (.\pid.c)(0x693C0F0D)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\pid.o --omf_browse xiaoneisai-fal\pid.crf --depend xiaoneisai-fal\pid.d)
+I (pid.h)(0x693C0DB8)
 I (../Core/Inc/main.h)(0x693A8636)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x68EB5C8F)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x693B0D91)
@@ -244,7 +247,7 @@ I (move.h)(0x693B135D)
 I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../Core/Inc/gpio.h)(0x693A8635)
 I (../Core/Inc/tim.h)(0x693A8636)
-F (.\pid.h)(0x693B1BBD)()
+F (.\pid.h)(0x693C0DB8)()
 F (.\encounter.c)(0x693B1BBD)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\encounter.o --omf_browse xiaoneisai-fal\encounter.crf --depend xiaoneisai-fal\encounter.d)
 I (encounter.h)(0x693B1C30)
 I (../Core/Inc/main.h)(0x693A8636)
@@ -278,8 +281,8 @@ I (../Core/Inc/gpio.h)(0x693A8635)
 I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../Core/Inc/tim.h)(0x693A8636)
 F (.\encounter.h)(0x693B1C30)()
-F (.\delay.c)(0x693B1F39)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\delay.o --omf_browse xiaoneisai-fal\delay.crf --depend xiaoneisai-fal\delay.d)
-I (delay.h)(0x693B1F2E)
+F (.\motor.c)(0x693C0E4F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\motor.o --omf_browse xiaoneisai-fal\motor.crf --depend xiaoneisai-fal\motor.d)
+I (motor.h)(0x693C073F)
 I (../Core/Inc/main.h)(0x693A8636)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x68EB5C8F)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x693B0D91)
@@ -307,7 +310,10 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h)(0x68EB5C8F)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h)(0x68EB5C8F)
-F (.\delay.h)(0x693B1F2E)()
+I (pid.h)(0x693C0DB8)
+I (encounter.h)(0x693B1C30)
+I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
+F (.\motor.h)(0x693C073F)()
 F (../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c)(0x68EB5C8F)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../MDK-ARM-I.\RTE\_XIAONEISAI-FAL-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32F10X_HD -DUSE_HAL_DRIVER -DSTM32F103xE-o xiaoneisai-fal\stm32f1xx_hal_gpio_ex.o --omf_browse xiaoneisai-fal\stm32f1xx_hal_gpio_ex.crf --depend xiaoneisai-fal\stm32f1xx_hal_gpio_ex.d)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x68EB5C8F)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x693B0D91)

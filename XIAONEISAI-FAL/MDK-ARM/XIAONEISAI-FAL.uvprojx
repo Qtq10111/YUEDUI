@@ -421,6 +421,11 @@
               <FilePath>../Core/Src/gpio.c</FilePath>
             </File>
             <File>
+              <FileName>app_motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>C:\Users\屈天齐\Desktop\app_motor.h</FilePath>
+            </File>
+            <File>
               <FileName>tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/tim.c</FilePath>
@@ -456,14 +461,14 @@
               <FilePath>.\encounter.h</FilePath>
             </File>
             <File>
-              <FileName>delay.c</FileName>
+              <FileName>motor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\delay.c</FilePath>
+              <FilePath>.\motor.c</FilePath>
             </File>
             <File>
-              <FileName>delay.h</FileName>
+              <FileName>motor.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\delay.h</FilePath>
+              <FilePath>.\motor.h</FilePath>
             </File>
           </Files>
         </Group>

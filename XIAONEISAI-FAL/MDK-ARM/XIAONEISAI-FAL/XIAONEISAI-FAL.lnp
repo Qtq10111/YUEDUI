@@ -9,7 +9,7 @@
 "xiaoneisai-fal\stm32f1xx_hal_msp.o"
 "xiaoneisai-fal\pid.o"
 "xiaoneisai-fal\encounter.o"
-"xiaoneisai-fal\delay.o"
+"xiaoneisai-fal\motor.o"
 "xiaoneisai-fal\stm32f1xx_hal_gpio_ex.o"
 "xiaoneisai-fal\stm32f1xx_hal_tim.o"
 "xiaoneisai-fal\stm32f1xx_hal_tim_ex.o"

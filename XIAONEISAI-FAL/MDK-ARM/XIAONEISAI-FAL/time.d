@@ -29,3 +29,5 @@ xiaoneisai-fal\time.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 xiaoneisai-fal\time.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 xiaoneisai-fal\time.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 xiaoneisai-fal\time.o: ../Core/Inc/tim.h
+xiaoneisai-fal\time.o: pid.h
+xiaoneisai-fal\time.o: motor.h
