@@ -19,12 +19,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "move.h"
 #include <stdio.h>
+#include "encounter.h"
+#include "pid.h"
+#include "motor.h"
 
 /* USER CODE END Includes */
 
@@ -51,12 +55,18 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void BRAKE(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t recieveData[7];
+uint32_t time_out=0;   //超时定时
+uint8_t current_move;   //运动or停止状态
+uint8_t move_state;   //运动方向状态
+float target_speed_forward;   //三方向速度
+float target_speed_left;
+float target_speed_rotate;
 /* USER CODE END 0 */
 
 /**
@@ -92,14 +102,33 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
+  MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-
+HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);
+HAL_TIM_Encoder_Start(&htim2,TIM_CHANNEL_ALL);
+HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
+HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
+HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_ALL);
+BRAKE();
+time_out=HAL_GetTick();
+HAL_UART_Receive_IT(&huart1,recieveData,sizeof(recieveData));
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		if(HAL_GetTick() - time_out > 100)   //超时强制刹车
+		{
+			BRAKE();
+			current_move=0;
+				move_state=0;
+				target_speed_forward=0;
+				target_speed_left=0;
+				target_speed_rotate=0;
+		}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -147,7 +176,132 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart == &huart1)
+	{
+		HAL_UART_Transmit(&huart2,recieveData,sizeof(recieveData),HAL_MAX_DELAY);//板间通信
+		switch(recieveData[4])
+		{
+			case 87:
+			{
+				current_move = 1;
+				move_state=1;
+				target_speed_forward=50.0f;
+				target_speed_left=0;
+				target_speed_rotate=0;
+				time_out=HAL_GetTick();//重置超时定时器
+				break;
+			}
+			case 83:
+			{
+				current_move = 1;
+				move_state=2;
+				target_speed_forward=-50.0f;
+				target_speed_left=0;
+				target_speed_rotate=0;
+				time_out=HAL_GetTick();
+				break;
+			}
+			case 65:
+			{
+				current_move = 1;
+				move_state=3;
+				target_speed_forward=0;
+				target_speed_left=50.0;
+				target_speed_rotate=0;
+				time_out=HAL_GetTick();
+				break;
+			}
+			case 68:
+			{
+				current_move = 1;
+				move_state=4;
+				target_speed_forward=0;
+				target_speed_left=-50.0f;
+				target_speed_rotate=0;
+				time_out=HAL_GetTick();
+				break;
+			}
+			case 81:
+			{
+				current_move =1;
+				move_state=5;
+				target_speed_forward=0;
+				target_speed_left=0;
+				target_speed_rotate=30.0f;
+				time_out=HAL_GetTick();
+				break;
+			}
+			case 69:
+			{
+				current_move=1;
+				move_state=6;
+				target_speed_forward=0;
+				target_speed_left=0;
+				target_speed_rotate=-30.0f;
+				time_out=HAL_GetTick();
+				break;
+			}
+			default:
+			{
+				current_move=0;
+				move_state=0;
+				target_speed_forward=0;
+				target_speed_left=0;
+				target_speed_rotate=0;
+			}
+		}
+	}
+	HAL_UART_Receive_IT(&huart1,recieveData,sizeof(recieveData));
+}
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim == &htim6)
+	{
+		if(move_state != 0)
+		{
+			float target_LF = target_speed_forward-target_speed_left-target_speed_rotate;//四个电机的速度解算
+			float target_RF = target_speed_forward+target_speed_left+target_speed_rotate;
+			float target_LB = target_speed_forward+target_speed_left-target_speed_rotate;
+			float target_RB = target_speed_forward-target_speed_left+target_speed_rotate;
+			motor_speed_set(target_LF,target_RF,target_LB,target_RB);
+			app_motor_run();
+			switch(move_state)
+			{
+				case 1:
+				{
+					FORWARD_MOVE();
+				}
+				case 2:
+				{
+					BACK_MOVE();
+				}
+				case 3:
+				{
+					LEFT_MOVE();
+				}
+				case 4:
+				{
+					RIGHT_MOVE();
+				}
+				case 5:
+				{
+					LEFT_ROTAY();
+				}
+				case 6:
+				{
+					RIGHT_ROTAY();
+				}
+			}
+		}
+		else//若运动状态为停止，跳过PID强制刹车
+		{
+			BRAKE();
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /**
