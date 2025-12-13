@@ -8,14 +8,14 @@ xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_de
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Include/core_cm3.h
-xiaoneisai-fal\encounter.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+xiaoneisai-fal\encounter.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Include/cmsis_version.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 xiaoneisai-fal\encounter.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-xiaoneisai-fal\encounter.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+xiaoneisai-fal\encounter.o: E:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -28,6 +28,7 @@ xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_fl
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+xiaoneisai-fal\encounter.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 xiaoneisai-fal\encounter.o: ../Core/Inc/gpio.h
-xiaoneisai-fal\encounter.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+xiaoneisai-fal\encounter.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 xiaoneisai-fal\encounter.o: ../Core/Inc/tim.h

@@ -1,6 +1,6 @@
 xiaoneisai-fal\move.o: move.c
 xiaoneisai-fal\move.o: move.h
-xiaoneisai-fal\move.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+xiaoneisai-fal\move.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 xiaoneisai-fal\move.o: ../Core/Inc/main.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 xiaoneisai-fal\move.o: ../Core/Inc/stm32f1xx_hal_conf.h
@@ -9,14 +9,14 @@ xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xe.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Include/core_cm3.h
-xiaoneisai-fal\move.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+xiaoneisai-fal\move.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Include/cmsis_version.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 xiaoneisai-fal\move.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-xiaoneisai-fal\move.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+xiaoneisai-fal\move.o: E:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -29,5 +29,6 @@ xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_e
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+xiaoneisai-fal\move.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 xiaoneisai-fal\move.o: ../Core/Inc/tim.h
 xiaoneisai-fal\move.o: ../Core/Inc/gpio.h
