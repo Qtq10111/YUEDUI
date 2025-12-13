@@ -61,10 +61,10 @@ void BRAKE(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint8_t recieveData[7];
-uint32_t time_out=0;
-uint8_t current_move;
-uint8_t move_state;
-float target_speed_forward;
+uint32_t time_out=0;   //超时定时
+uint8_t current_move;   //运动or停止状态
+uint8_t move_state;   //运动方向状态
+float target_speed_forward;   //三方向速度
 float target_speed_left;
 float target_speed_rotate;
 /* USER CODE END 0 */
@@ -120,7 +120,7 @@ HAL_UART_Receive_IT(&huart1,recieveData,sizeof(recieveData));
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if(HAL_GetTick() - time_out > 100)
+		if(HAL_GetTick() - time_out > 100)   //超时强制刹车
 		{
 			BRAKE();
 			current_move=0;
@@ -180,6 +180,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if(huart == &huart1)
 	{
+		HAL_UART_Transmit(&huart2,recieveData,sizeof(recieveData),HAL_MAX_DELAY);//板间通信
 		switch(recieveData[4])
 		{
 			case 87:
@@ -189,7 +190,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 				target_speed_forward=50.0f;
 				target_speed_left=0;
 				target_speed_rotate=0;
-				time_out=HAL_GetTick();
+				time_out=HAL_GetTick();//重置超时定时器
 				break;
 			}
 			case 83:
@@ -252,6 +253,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			}
 		}
 	}
+	HAL_UART_Receive_IT(&huart1,recieveData,sizeof(recieveData));
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -260,7 +262,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
 		if(move_state != 0)
 		{
-			float target_LF = target_speed_forward-target_speed_left-target_speed_rotate;
+			float target_LF = target_speed_forward-target_speed_left-target_speed_rotate;//四个电机的速度解算
 			float target_RF = target_speed_forward+target_speed_left+target_speed_rotate;
 			float target_LB = target_speed_forward+target_speed_left-target_speed_rotate;
 			float target_RB = target_speed_forward-target_speed_left+target_speed_rotate;
@@ -294,7 +296,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 				}
 			}
 		}
-		else
+		else//若运动状态为停止，跳过PID强制刹车
 		{
 			BRAKE();
 		}

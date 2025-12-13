@@ -95,6 +95,8 @@ Section Cross References
     main.o(i.HAL_TIM_PeriodElapsedCallback) refers to move.o(i.BRAKE) for BRAKE
     main.o(i.HAL_TIM_PeriodElapsedCallback) refers to tim.o(.bss) for htim6
     main.o(i.HAL_TIM_PeriodElapsedCallback) refers to main.o(.data) for .data
+    main.o(i.HAL_UART_RxCpltCallback) refers to stm32f1xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
+    main.o(i.HAL_UART_RxCpltCallback) refers to stm32f1xx_hal_uart.o(i.HAL_UART_Receive_IT) for HAL_UART_Receive_IT
     main.o(i.HAL_UART_RxCpltCallback) refers to stm32f1xx_hal.o(i.HAL_GetTick) for HAL_GetTick
     main.o(i.HAL_UART_RxCpltCallback) refers to usart.o(.bss) for huart1
     main.o(i.HAL_UART_RxCpltCallback) refers to main.o(.data) for .data
@@ -606,7 +608,7 @@ Removing Unused input sections from the image.
     Removing main.o(.revsh_text), (4 bytes).
     Removing main.o(.rrx_text), (6 bytes).
     Removing main.o(i.HAL_TIM_PeriodElapsedCallback), (160 bytes).
-    Removing main.o(i.HAL_UART_RxCpltCallback), (172 bytes).
+    Removing main.o(i.HAL_UART_RxCpltCallback), (200 bytes).
     Removing gpio.o(.rev16_text), (4 bytes).
     Removing gpio.o(.revsh_text), (4 bytes).
     Removing gpio.o(.rrx_text), (6 bytes).
@@ -997,7 +999,7 @@ Removing Unused input sections from the image.
     Removing d2f.o(.text), (56 bytes).
     Removing fepilogue.o(.text), (110 bytes).
 
-442 unused section(s) (total 31166 bytes) removed from the image.
+442 unused section(s) (total 31194 bytes) removed from the image.
 
 ==============================================================================
 
