@@ -1,0 +1,28 @@
+--cpu Cortex-M3
+"xns_temp\startup_stm32f103xb.o"
+"xns_temp\main.o"
+"xns_temp\gpio.o"
+"xns_temp\tim.o"
+"xns_temp\usart.o"
+"xns_temp\stm32f1xx_it.o"
+"xns_temp\stm32f1xx_hal_msp.o"
+"xns_temp\move_temp.o"
+"xns_temp\stm32f1xx_hal_gpio_ex.o"
+"xns_temp\stm32f1xx_hal_tim.o"
+"xns_temp\stm32f1xx_hal_tim_ex.o"
+"xns_temp\stm32f1xx_hal.o"
+"xns_temp\stm32f1xx_hal_rcc.o"
+"xns_temp\stm32f1xx_hal_rcc_ex.o"
+"xns_temp\stm32f1xx_hal_gpio.o"
+"xns_temp\stm32f1xx_hal_dma.o"
+"xns_temp\stm32f1xx_hal_cortex.o"
+"xns_temp\stm32f1xx_hal_pwr.o"
+"xns_temp\stm32f1xx_hal_flash.o"
+"xns_temp\stm32f1xx_hal_flash_ex.o"
+"xns_temp\stm32f1xx_hal_exti.o"
+"xns_temp\stm32f1xx_hal_uart.o"
+"xns_temp\system_stm32f1xx.o"
+--strict --scatter "XNS_TEMP\XNS_TEMP.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "XNS_TEMP.map" -o XNS_TEMP\XNS_TEMP.axf
