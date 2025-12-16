@@ -57,6 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Group1_EN_Pin GPIO_PIN_9
+#define Group1_EN_GPIO_Port GPIOA
+#define Group1_DIR_Pin GPIO_PIN_10
+#define Group1_DIR_GPIO_Port GPIOA
+#define Group2_EN_Pin GPIO_PIN_11
+#define Group2_EN_GPIO_Port GPIOA
+#define Group2_DIR_Pin GPIO_PIN_12
+#define Group2_DIR_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

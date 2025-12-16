@@ -27,6 +27,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdint.h"
+#include "step_motor.h"
 
 /* USER CODE END Includes */
 
@@ -47,7 +48,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t receivedata[6];
+uint8_t receivedata[7];
 uint8_t pwm1;
 /* USER CODE END PV */
 
@@ -59,7 +60,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t gp1_state;
+uint8_t gp2_state;
+uint8_t gp_all_state;
 /* USER CODE END 0 */
 
 /**
@@ -93,11 +96,14 @@ int main(void)
   MX_TIM1_Init();
   MX_USART2_UART_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
   HAL_UART_Receive_IT(&huart2,receivedata,6);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-
+	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -181,8 +187,59 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
 			}
 		}
-		HAL_UART_Receive_IT(&huart2, receivedata, 6);
-			
+		
+		switch(receivedata[6])//齿条升降
+		{
+			case 0://第一组齿条升降
+			{
+				switch(gp1_state)
+				{
+					case 0:
+					{
+						Motor_Rotate_Angle(MOTOR_GROUP1,300);
+						gp1_state = 1;
+						break;
+					}
+					case 1:
+					{
+						Motor_Rotate_Angle(MOTOR_GROUP1,-300);
+						gp1_state = 0;
+					}
+				}
+				break;
+			}
+			case 1://第二组齿条升降
+			{
+				switch(gp2_state)
+				{
+					case 0:
+					{
+						Motor_Rotate_Angle(MOTOR_GROUP2,300);
+						gp2_state = 1;
+						break;
+					}
+					case 1:
+					{
+						Motor_Rotate_Angle(MOTOR_GROUP2,-300);
+						gp2_state = 0;
+					}
+				}
+				break;
+			}
+			case 2://所有齿条升起
+			{
+				Motor_Rotate_Angle(MOTOR_GROUP1,300);
+				Motor_Rotate_Angle(MOTOR_GROUP2,300);
+				break;
+			}
+			case 3://所有齿条落下
+			{
+				Motor_Rotate_Angle(MOTOR_GROUP1,-300);
+				Motor_Rotate_Angle(MOTOR_GROUP2,-300);
+				break;
+			}
+		}
+		HAL_UART_Receive_IT(&huart2, receivedata, 7);
 	}
 
 }
