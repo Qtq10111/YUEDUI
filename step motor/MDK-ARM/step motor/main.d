@@ -7,14 +7,14 @@ step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 step motor\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
 step motor\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
 step motor\main.o: ../Drivers/CMSIS/Include/core_cm3.h
-step motor\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 step motor\main.o: ../Drivers/CMSIS/Include/cmsis_version.h
 step motor\main.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 step motor\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 step motor\main.o: ../Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
 step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-step motor\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
 step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
 step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
 step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
@@ -31,5 +31,7 @@ step motor\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 step motor\main.o: ../Core/Inc/tim.h
 step motor\main.o: ../Core/Inc/usart.h
 step motor\main.o: ../Core/Inc/gpio.h
-step motor\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-step motor\main.o: D:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+step motor\main.o: ../MDK-ARM/step_motor.h
+step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\math.h

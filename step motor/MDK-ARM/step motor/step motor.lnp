@@ -1,5 +1,6 @@
 --cpu Cortex-M3
 "step motor\startup_stm32f103xb.o"
+"step motor\step_motor.o"
 "step motor\main.o"
 "step motor\gpio.o"
 "step motor\tim.o"
