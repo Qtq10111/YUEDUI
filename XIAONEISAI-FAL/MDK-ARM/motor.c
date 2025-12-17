@@ -8,10 +8,10 @@
 
 void motor_speed_set(float A,float B,float C,float D)
 {
-	W_A.TG = A;
-	W_B.TG = B;
-	W_C.TG = C;
-	W_D.TG = D;
+	SPEED_ASET(A);
+  SPEED_BSET(B);
+  SPEED_CSET(C);
+  SPEED_DSET(D);
 }
 
 
