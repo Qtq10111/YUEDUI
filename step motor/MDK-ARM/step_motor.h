@@ -7,8 +7,8 @@
 
 // 电机组定义
 typedef enum {
-    MOTOR_GROUP1 = 0,  // 第1组（TIM3驱动）
-    MOTOR_GROUP2 = 1   // 第2组（TIM4驱动）
+    MOTOR_GROUP1 = 0,
+    MOTOR_GROUP2 = 1
 } Motor_Group_t;
 
 // 42步进电机核心参数（1.8°步距角）

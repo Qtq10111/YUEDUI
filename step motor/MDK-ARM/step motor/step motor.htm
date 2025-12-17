@@ -3,9 +3,9 @@
 <title>Static Call Graph - [step motor\step motor.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image step motor\step motor.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 16 16:10:33 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Dec 17 15:14:34 2025
 <BR><P>
-<H3>Maximum Stack Usage =        168 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 USART2_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -547,7 +547,7 @@ Global Symbols
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM1_Init
 </UL>
 
-<P><STRONG><a name="[5d]"></a>HAL_TIM_MspPostInit</STRONG> (Thumb, 172 bytes, Stack size 32 bytes, tim.o(i.HAL_TIM_MspPostInit))
+<P><STRONG><a name="[5d]"></a>HAL_TIM_MspPostInit</STRONG> (Thumb, 174 bytes, Stack size 32 bytes, tim.o(i.HAL_TIM_MspPostInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = HAL_TIM_MspPostInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
@@ -616,7 +616,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[69]"></a>HAL_UART_IRQHandler</STRONG> (Thumb, 616 bytes, Stack size 24 bytes, stm32f1xx_hal_uart.o(i.HAL_UART_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_TxCpltCallback
@@ -656,7 +656,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[77]"></a>HAL_UART_RxCpltCallback</STRONG> (Thumb, 234 bytes, Stack size 16 bytes, main.o(i.HAL_UART_RxCpltCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_IT
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
@@ -681,8 +681,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[7b]"></a>MX_GPIO_Init</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, gpio.o(i.MX_GPIO_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[7b]"></a>MX_GPIO_Init</STRONG> (Thumb, 142 bytes, Stack size 48 bytes, gpio.o(i.MX_GPIO_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
@@ -690,7 +690,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7c]"></a>MX_TIM1_Init</STRONG> (Thumb, 192 bytes, Stack size 96 bytes, tim.o(i.MX_TIM1_Init))
+<P><STRONG><a name="[7c]"></a>MX_TIM1_Init</STRONG> (Thumb, 240 bytes, Stack size 96 bytes, tim.o(i.MX_TIM1_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = MX_TIM1_Init &rArr; HAL_TIM_MspPostInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Init
@@ -721,7 +721,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[82]"></a>MX_TIM3_Init</STRONG> (Thumb, 144 bytes, Stack size 64 bytes, tim.o(i.MX_TIM3_Init))
+<P><STRONG><a name="[82]"></a>MX_TIM3_Init</STRONG> (Thumb, 142 bytes, Stack size 64 bytes, tim.o(i.MX_TIM3_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = MX_TIM3_Init &rArr; HAL_TIM_MspPostInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Init
@@ -736,7 +736,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[83]"></a>MX_TIM4_Init</STRONG> (Thumb, 144 bytes, Stack size 64 bytes, tim.o(i.MX_TIM4_Init))
+<P><STRONG><a name="[83]"></a>MX_TIM4_Init</STRONG> (Thumb, 142 bytes, Stack size 64 bytes, tim.o(i.MX_TIM4_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = MX_TIM4_Init &rArr; HAL_TIM_MspPostInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Init
@@ -767,8 +767,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[7a]"></a>Motor_Rotate_Angle</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, step_motor.o(i.Motor_Rotate_Angle))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[7a]"></a>Motor_Rotate_Angle</STRONG> (Thumb, 336 bytes, Stack size 40 bytes, step_motor.o(i.Motor_Rotate_Angle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -844,7 +844,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[30]"></a>USART2_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.USART2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = USART2_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = USART2_IRQHandler &rArr; HAL_UART_IRQHandler &rArr; UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
 </UL>
@@ -936,7 +936,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[6a]"></a>UART_Receive_IT</STRONG> (Thumb, 194 bytes, Stack size 8 bytes, stm32f1xx_hal_uart.o(i.UART_Receive_IT))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = UART_Receive_IT &rArr; HAL_UART_RxCpltCallback &rArr; Motor_Rotate_Angle &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
