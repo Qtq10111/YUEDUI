@@ -74,9 +74,9 @@ void SPEED_ASET(int16_t speed){//主函数pwm输入的标准值
 	if(temp < -2000)temp = -2000;
 	
 	if(temp > 0){
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_1,temp);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,temp);
 	}else{
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_1,temp+2000);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,temp+2000);
 	}
 
 }
@@ -88,9 +88,9 @@ void SPEED_BSET(int16_t speed){//主函数pwm输入的标准值
 	if(temp < -2000)temp = -2000;
 	
 	if(temp > 0){
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_2,temp);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,temp);
 	}else{
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_2,temp+2000);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,temp+2000);
 	}
 
 }
@@ -102,9 +102,9 @@ void SPEED_CSET(int16_t speed){//主函数pwm输入的标准值
 	if(temp < -2000)temp = -2000;
 	
 	if(temp > 0){
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_3,temp);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_3,temp);
 	}else{
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_3,temp+2000);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_3,temp+2000);
 	}
 
 }
@@ -116,9 +116,9 @@ void SPEED_DSET(int16_t speed){//主函数pwm输入的标准值
 	if(temp < -2000)temp = -2000;
 	
 	if(temp > 0){
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_4,temp);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_4,temp);
 	}else{
-		__HAL_TIM_SET_COMPARE(&htim5,TIM_CHANNEL_4,temp+2000);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_4,temp+2000);
 	}
 
 }

@@ -33,6 +33,5 @@ xiaoneisai-fal\main.o: ../Core/Inc/usart.h
 xiaoneisai-fal\main.o: ../Core/Inc/gpio.h
 xiaoneisai-fal\main.o: ../MDK-ARM/move.h
 xiaoneisai-fal\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-xiaoneisai-fal\main.o: ../MDK-ARM/encounter.h
 xiaoneisai-fal\main.o: ../MDK-ARM/pid.h
 xiaoneisai-fal\main.o: ../MDK-ARM/motor.h

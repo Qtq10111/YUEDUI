@@ -1,9 +1,6 @@
 --cpu Cortex-M3
 "xiaoneisai-fal\startup_stm32f103xe.o"
 "xiaoneisai-fal\move.o"
-"xiaoneisai-fal\time.o"
-"xiaoneisai-fal\pid.o"
-"xiaoneisai-fal\encounter.o"
 "xiaoneisai-fal\motor.o"
 "xiaoneisai-fal\main.o"
 "xiaoneisai-fal\gpio.o"
@@ -11,6 +8,7 @@
 "xiaoneisai-fal\usart.o"
 "xiaoneisai-fal\stm32f1xx_it.o"
 "xiaoneisai-fal\stm32f1xx_hal_msp.o"
+"xiaoneisai-fal\pid.o"
 "xiaoneisai-fal\stm32f1xx_hal_gpio_ex.o"
 "xiaoneisai-fal\stm32f1xx_hal_tim.o"
 "xiaoneisai-fal\stm32f1xx_hal_tim_ex.o"

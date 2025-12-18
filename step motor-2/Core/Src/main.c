@@ -48,7 +48,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t receivedata[10];
+uint8_t receivedata[13];
 uint8_t pwm1;
 uint8_t pwm2;
 /* USER CODE END PV */
@@ -114,30 +114,26 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
-  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
-  HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
-  HAL_UART_Receive_IT(&huart2,receivedata,6);
+  HAL_UART_Receive_IT(&huart2,receivedata,13);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_4);
-	
+	Motor_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+ /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_UART_Receive_IT(&huart2,receivedata,sizeof(receivedata));
-	  __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,500);
-	  __HAL_TIM_SET_AUTORELOAD(&htim1,1000);
+//	  HAL_UART_Receive_IT(&huart2,receivedata,sizeof(receivedata));
+//	  __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,500);
+//	  __HAL_TIM_SET_AUTORELOAD(&htim1,1000);
 	  
 	  __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,800);
 	  __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,800);
@@ -223,64 +219,46 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		
 		SHOOT(receivedata[6],receivedata[8]);
 		
-		switch(receivedata[7])//齿条升降
+		switch(receivedata[9])
 		{
-			case 0://第一组齿条升降
+			case 0:
 			{
-				switch(gp1_state)
-				{
-					case 0:
-					{
-						Motor_Rotate_Angle(MOTOR_GROUP1,300);
-						gp1_state = 1;
-						break;
-					}
-					case 1:
-					{
-						Motor_Rotate_Angle(MOTOR_GROUP1,-300);
-						gp1_state = 0;
-					}
-				}
+				Motor_Rotate_Angle(MOTOR_GROUP1,3000);
 				break;
 			}
-			case 1://第二组齿条升降
+			case 1:
 			{
-				switch(gp2_state)
-				{
-					case 0:
-					{
-						Motor_Rotate_Angle(MOTOR_GROUP2,300);
-						gp2_state = 1;
-						break;
-					}
-					case 1:
-					{
-						Motor_Rotate_Angle(MOTOR_GROUP2,-300);
-						gp2_state = 0;
-					}
-				}
+				Motor_Rotate_Angle(MOTOR_GROUP1,-3000);
 				break;
 			}
-			case 2://所有齿条升起
+			case 2:
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1,300);
-				Motor_Rotate_Angle(MOTOR_GROUP2,300);
+				Motor_Rotate_Angle(MOTOR_GROUP2,3000);
 				break;
 			}
-			case 3://所有齿条落下
+			case 3:
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1,-300);
-				Motor_Rotate_Angle(MOTOR_GROUP2,-300);
+				Motor_Rotate_Angle(MOTOR_GROUP2,-3000);
 				break;
 			}
-			default:{
+			case 4:
+			{
+				Motor_Rotate_Angle(MOTOR_GROUP1,3000);
+				Motor_Rotate_Angle(MOTOR_GROUP2,3000);
 				break;
 			}
+			case 5:
+			{
+				Motor_Stop(MOTOR_GROUP1);
+				Motor_Stop(MOTOR_GROUP2);
+			}
+			default:break;
 		}
-		HAL_UART_Receive_IT(&huart2, receivedata, 7);
+		HAL_UART_Receive_IT(&huart2, receivedata, 13);
+		}
 	}
 
-}
+
 
 
 

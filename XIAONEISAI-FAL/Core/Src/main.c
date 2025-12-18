@@ -26,7 +26,6 @@
 /* USER CODE BEGIN Includes */
 #include "move.h"
 #include <stdio.h>
-#include "encounter.h"
 #include "pid.h"
 #include "motor.h"
 
@@ -60,16 +59,11 @@ void BRAKE(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t recieveData[1];
+uint8_t recieveData[13];
 uint32_t time_out=0;   //超时定时
-uint8_t current_move;   //运动or停止状态
-uint8_t move_state;   //运动方向状态
-float target_speed_forward;   //三方向速度
-float target_speed_left;
-float target_speed_rotate;
 /* USER CODE END 0 */
 
-/**
+ /**
   * @brief  The application entry point.
   * @retval int
   */
@@ -106,10 +100,6 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);
-HAL_TIM_Encoder_Start(&htim2,TIM_CHANNEL_ALL);
-HAL_TIM_Encoder_Start(&htim3,TIM_CHANNEL_ALL);
-HAL_TIM_Encoder_Start(&htim4,TIM_CHANNEL_ALL);
 HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_ALL);
 BRAKE();
 time_out=HAL_GetTick();
@@ -176,42 +166,48 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	if(huart == &huart1)
 	{
 		HAL_UART_Transmit(&huart2,recieveData,sizeof(recieveData),HAL_MAX_DELAY);//板间通信
-		switch(recieveData[0])
+		switch(recieveData[4])
 		{
 			case 87:
 			{
 				time_out=HAL_GetTick();//重置超时定时器
 				FORWARD_MOVE();
+				motor_speed_set(500,500,500,500);
 				break;
 			}
 			case 83:
 			{
 				time_out=HAL_GetTick();
 				BACK_MOVE();
+				motor_speed_set(-500,-500,-500,-500);
 				break;
 			}
 			case 65:
 			{
 				time_out=HAL_GetTick();
 				LEFT_MOVE();
+				motor_speed_set(-500,500,500,-500);
 				break;
 			}
 			case 68:
 			{
 				time_out=HAL_GetTick();
 				RIGHT_MOVE();
+				motor_speed_set(500,-500,-500,500);
 				break;
 			}
 			case 81:
 			{
 				time_out=HAL_GetTick();
 				LEFT_ROTAY();
+				motor_speed_set(-500,500,-500,500);
 				break;
 			}
 			case 69:
 			{
 				time_out=HAL_GetTick();
 				RIGHT_ROTAY();
+				motor_speed_set(500,-500,500,-500);
 				break;
 			}
 			default:

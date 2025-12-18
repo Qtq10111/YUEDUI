@@ -34,4 +34,3 @@ step motor\main.o: ../Core/Inc/gpio.h
 step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 step motor\main.o: ../MDK-ARM/step_motor.h
-step motor\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\math.h
