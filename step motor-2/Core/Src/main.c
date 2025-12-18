@@ -219,41 +219,32 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		
 		SHOOT(receivedata[6],receivedata[8]);
 		
-		switch(receivedata[9])
-		{
-			case 0:
+		if (receivedata[9] == 0)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1,3000);
-				break;
+				Motor_Rotate_Angle(MOTOR_GROUP1, 3000);
 			}
-			case 1:
+		else if (receivedata[9] == 1)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1,-3000);
-				break;
+				Motor_Rotate_Angle(MOTOR_GROUP1, -3000);
 			}
-			case 2:
+		else if (receivedata[9] == 2)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP2,3000);
-				break;
+				Motor_Rotate_Angle(MOTOR_GROUP2, 3000);
 			}
-			case 3:
+		else if (receivedata[9] == 3)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP2,-3000);
-				break;
+				Motor_Rotate_Angle(MOTOR_GROUP2, -3000);
 			}
-			case 4:
+		else if (receivedata[9] == 4)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1,3000);
-				Motor_Rotate_Angle(MOTOR_GROUP2,3000);
-				break;
+				Motor_Rotate_Angle(MOTOR_GROUP1, 3000);
+				Motor_Rotate_Angle(MOTOR_GROUP2, 3000);
 			}
-			case 5:
+		else if (receivedata[9] == 5)
 			{
 				Motor_Stop(MOTOR_GROUP1);
 				Motor_Stop(MOTOR_GROUP2);
 			}
-			default:break;
-		}
 		HAL_UART_Receive_IT(&huart2, receivedata, 13);
 		}
 	}
