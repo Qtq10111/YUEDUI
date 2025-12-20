@@ -221,24 +221,54 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		
 		if (receivedata[9] == 0)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1, 3000);
+				HAL_GPIO_WritePin(LF_EN_GPIO_Port,LF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RF_EN_GPIO_Port,RF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(RF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_SET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			}
 		else if (receivedata[9] == 1)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1, -3000);
+				HAL_GPIO_WritePin(LF_EN_GPIO_Port,LF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RF_EN_GPIO_Port,RF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_RESET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			}
 		else if (receivedata[9] == 2)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP2, 3000);
+				HAL_GPIO_WritePin(LB_EN_GPIO_Port,LB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RB_EN_GPIO_Port,RB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LB_DIR_GPIO_Port,LB_DIR_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(RB_DIR_GPIO_Port,RB_DIR_Pin,GPIO_PIN_SET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
 			}
 		else if (receivedata[9] == 3)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP2, -3000);
+				HAL_GPIO_WritePin(LB_EN_GPIO_Port,LB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RB_EN_GPIO_Port,RB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LB_DIR_GPIO_Port,LB_DIR_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RB_DIR_GPIO_Port,RB_DIR_Pin,GPIO_PIN_RESET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
 			}
 		else if (receivedata[9] == 4)
 			{
-				Motor_Rotate_Angle(MOTOR_GROUP1, 3000);
-				Motor_Rotate_Angle(MOTOR_GROUP2, 3000);
+				HAL_GPIO_WritePin(LB_EN_GPIO_Port,LB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RB_EN_GPIO_Port,RB_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LB_DIR_GPIO_Port,LB_DIR_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(RB_DIR_GPIO_Port,RB_DIR_Pin,GPIO_PIN_SET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
+				HAL_GPIO_WritePin(LF_EN_GPIO_Port,LF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(RF_EN_GPIO_Port,RF_EN_Pin,GPIO_PIN_RESET);
+				HAL_GPIO_WritePin(LF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(RF_DIR_GPIO_Port,LF_DIR_Pin,GPIO_PIN_SET);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+				HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
 			}
 		else if (receivedata[9] == 5)
 			{
@@ -248,12 +278,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		HAL_UART_Receive_IT(&huart2, receivedata, 13);
 		}
 	}
-
-
-
-
-
-
 	
 /* USER CODE END 4 */
 
