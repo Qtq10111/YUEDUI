@@ -33,5 +33,4 @@ move_c8t6\main.o: ../Core/Inc/usart.h
 move_c8t6\main.o: ../Core/Inc/gpio.h
 move_c8t6\main.o: ../MDK-ARM/move.h
 move_c8t6\main.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-move_c8t6\main.o: ../MDK-ARM/pid.h
 move_c8t6\main.o: ../MDK-ARM/motor.h

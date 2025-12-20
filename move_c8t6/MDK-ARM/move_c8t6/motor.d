@@ -29,5 +29,5 @@ move_c8t6\motor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 move_c8t6\motor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 move_c8t6\motor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 move_c8t6\motor.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-move_c8t6\motor.o: E:\新建文件夹\YUEDUI\XIAONEISAI-FAL\MDK-ARM\pid.h
 move_c8t6\motor.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+move_c8t6\motor.o: ../Core/Inc/tim.h

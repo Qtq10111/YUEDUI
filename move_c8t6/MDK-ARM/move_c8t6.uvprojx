@@ -401,16 +401,6 @@
               <FilePath>E:\新建文件夹\YUEDUI\XIAONEISAI-FAL\MDK-ARM\move.c</FilePath>
             </File>
             <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>E:\新建文件夹\YUEDUI\XIAONEISAI-FAL\MDK-ARM\pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>pid.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>E:\新建文件夹\YUEDUI\XIAONEISAI-FAL\MDK-ARM\pid.h</FilePath>
-            </File>
-            <File>
               <FileName>move.h</FileName>
               <FileType>5</FileType>
               <FilePath>E:\新建文件夹\YUEDUI\XIAONEISAI-FAL\MDK-ARM\move.h</FilePath>

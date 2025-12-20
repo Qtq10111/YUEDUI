@@ -26,7 +26,6 @@
 /* USER CODE BEGIN Includes */
 #include "move.h"
 #include <stdio.h>
-#include "pid.h"
 #include "motor.h"
 /* USER CODE END Includes */
 
@@ -54,12 +53,12 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void BRAKE(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t recieveData[13];
+uint8_t recieveData[14];
 /* USER CODE END 0 */
 
 /**
@@ -95,10 +94,14 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_ALL);
-	
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
+//	HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
 	BRAKE();
 	HAL_UART_Receive_IT(&huart1,recieveData,sizeof(recieveData));
+	motor_speed_set(500,500,500,500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -156,42 +159,37 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if(huart == &huart1)
 	{
-		HAL_UART_Transmit(&huart2,recieveData,sizeof(recieveData),HAL_MAX_DELAY);//���ͨ��
+		HAL_UART_Transmit(&huart2,recieveData,sizeof(recieveData),HAL_MAX_DELAY);
+//		if (recieveData[10] == 114)
+//		{
+//			double angle = 0.075;
+//			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,angle);
+//		}
 		if (recieveData[4] == 87)
 		{
 				FORWARD_MOVE();
-				motor_speed_set(500, 500, 500, 500);
 		}
 		else if (recieveData[4] == 83)
 		{
 				BACK_MOVE();
-				motor_speed_set(-500, -500, -500, -500);
 		}
 		else if (recieveData[4] == 65)
 		{
 				LEFT_MOVE();
-				motor_speed_set(-500, 500, 500, -500);
 		}
 		else if (recieveData[4] == 68)
 		{
 				RIGHT_MOVE();
-				motor_speed_set(500, -500, -500, 500);
 		}
 		else if (recieveData[4] == 81)
 		{
 				LEFT_ROTAY();
-				motor_speed_set(-500, 500, -500, 500);
 		}
 		else if (recieveData[4] == 69)
 		{
 				RIGHT_ROTAY();
-				motor_speed_set(500, -500, 500, -500);
 		}
 		else if (recieveData[4] == 0)
-		{
-				BRAKE();
-		}
-		else
 		{
 				BRAKE();
 		}
